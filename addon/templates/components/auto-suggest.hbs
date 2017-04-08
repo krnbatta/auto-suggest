@@ -1,0 +1,21 @@
+{{input value=input_value}}
+
+{{#if showSuggestions}}
+	<ul class='suggestions-menu'>
+		{{#if showLoading}}
+			<li class='no-results'><i class='icon-spinner icon-spin'></i>loading... </li>
+		{{else}}
+			{{#each suggestions as |suggestion|}}
+				<li class={{if suggestion.active "isPrompt result" "result"}} {{action "selectActive" suggestion}} >
+					{{#if suggestionPartial}}
+						{{partial suggestionPartial}}
+					{{else}}
+						{{suggestion.name}}
+					{{/if}}
+				</li>
+			{{else}}
+				<li class='no-results'>{{noResultMessage}}</li>
+			{{/each}}
+		{{/if}}
+	</ul>
+{{/if}}
